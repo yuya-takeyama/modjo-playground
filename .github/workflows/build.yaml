@@ -9,6 +9,8 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       build-params: ${{ steps.build-params.outputs.build-params }}
     steps:
@@ -24,6 +26,9 @@ jobs:
     needs: setup
     if: ${{ needs.setup.outputs.build-params != '[]' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     strategy:
       matrix:
         build-params: ${{ fromJSON(needs.setup.outputs.build-params) }}
