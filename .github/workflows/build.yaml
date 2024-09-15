@@ -13,9 +13,6 @@ jobs:
       build-params: ${{ steps.build-params.outputs.build-params }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
       - id: build-params
         uses: yuya-takeyama/mobb/actions/generate-build-params@initial
         with:
