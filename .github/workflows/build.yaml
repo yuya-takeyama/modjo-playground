@@ -22,7 +22,7 @@ jobs:
       - run: |
           echo "$BUILD_PARAMS"
         env:
-          BUILD_PARAMS: ${{ toJSON(steps.build-params.outputs) }}
+          BUILD_PARAMS: ${{ toJSON(steps.build-params.outputs.build-params) }}
 
   build:
     needs: setup
