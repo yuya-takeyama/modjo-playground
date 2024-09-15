@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        build-params: ${{ needs.setup.outputs.build-params }}
+        build-params: ${{ fromJSON(needs.setup.outputs.build-params) }}
     steps:
       - uses: actions/checkout@v4
       - run: |
