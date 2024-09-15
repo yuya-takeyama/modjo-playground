@@ -23,6 +23,7 @@ jobs:
           datetime-tag-timezone: Asia/Tokyo
 
   build:
+    name: ${{ matrix.build-params.label }}
     needs: setup
     if: ${{ needs.setup.outputs.build-params != '[]' }}
     runs-on: ubuntu-latest
