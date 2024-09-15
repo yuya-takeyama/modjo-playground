@@ -18,8 +18,8 @@
   packageRules: [
     {
       // To avoid 422 error due to the length of the labels for ECR deps
-      excludeDepNames: [
-        '^(?:(?:\\d+\\.dkr\\.ecr\\.[^\\.]+\\.amazonaws.com)/[^:]+?)$',
+      matchDepNames: [
+        '!^(?:(?:\\d+\\.dkr\\.ecr\\.[^\\.]+\\.amazonaws.com)/[^:]+?)$',
       ],
       labels: [
         'renovate:{{depName}}',
