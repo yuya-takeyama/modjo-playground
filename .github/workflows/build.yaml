@@ -20,7 +20,9 @@ jobs:
           global-config-file: apps/mobb-global.yaml
           datetime-tag-timezone: Asia/Tokyo
       - run: |
-          echo "${{ toJSON(steps.build-params.outputs) }}"
+          echo "$BUILD_PARAMS"
+        env:
+          BUILD_PARAMS: ${{ toJSON(steps.build-params.outputs) }}
 
   build:
     needs: setup
