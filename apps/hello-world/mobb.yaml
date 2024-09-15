@@ -7,7 +7,7 @@ build:
       tagging: always_latest
       platforms:
         - linux/amd64
-      identity: stg
+      identity: stg-main
       registry: stg
   - on:
       pull_request:
@@ -15,7 +15,7 @@ build:
       tagging: pull_request
       platforms:
         - linux/amd64
-      identity: stg
+      identity: stg-pr
       registry: stg
   - on:
       push:
