@@ -34,4 +34,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          echo "${{ toJSON(matrix.build-params) }}"
+          echo "$BUILD_PARAMS"
+        env:
+          BUILD_PARAMS: ${{ toJSON(matrix.build-params) }}
