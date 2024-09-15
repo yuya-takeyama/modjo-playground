@@ -10,9 +10,7 @@ build:
       identity: stg
       registry: stg
   - on:
-      push:
-        branches:
-          - main
+      pull_request:
     docker:
       tagging: pull_request
       platforms:
