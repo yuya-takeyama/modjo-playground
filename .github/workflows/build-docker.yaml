@@ -1,4 +1,4 @@
-name: build
+name: build-docker
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: build-params
-        uses: yuya-takeyama/mobb/actions/generate-build-params@initial
+        uses: yuya-takeyama/mobb/actions/generate-build-docker-params@initial
         with:
           root-dir: apps
           global-config-file: apps/mobb-global.yaml
