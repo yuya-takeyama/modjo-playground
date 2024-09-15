@@ -17,6 +17,8 @@
         'image_identifier\\s*=\\s*"(?<depName>(?:\\d+\\.dkr\\.ecr\\.[^\\.]+\\.amazonaws.com)/[^:]+?):(?<currentValue>.+?)"',
       ],
       datasourceTemplate: "docker",
+      // To avoid 422 error due to the length of the labels
+      labels: ["datasource:{{datasource}}"]
     },
   ],
 }
