@@ -19,10 +19,6 @@ jobs:
           root-dir: apps
           global-config-file: apps/mobb-global.yaml
           datetime-tag-timezone: Asia/Tokyo
-      - run: |
-          echo "$BUILD_PARAMS"
-        env:
-          BUILD_PARAMS: ${{ toJSON(steps.build-params.outputs.build-params) }}
 
   build:
     needs: setup
@@ -37,3 +33,17 @@ jobs:
           echo "$BUILD_PARAMS"
         env:
           BUILD_PARAMS: ${{ toJSON(matrix.build-params) }}
+      - uses: actions/checkout@v4.1.7
+      - uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          role-to-assume: ${{ matrix.build-params.value.docker.identity.aws.iam-role }}
+          aws-region: ${{ matrix.build-params.value.docker.identity.aws.region }}
+      - id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2.0.1
+      - uses: docker/setup-buildx-action@v3.6.1
+      - uses: docker/build-push-action@v6.6.1
+        with:
+          context: ${{ matrix.build-params.value.docker.context }}
+          push: true
+          tags: ${{ matrix.build-params.value.docker.tags }}
+          platforms: ${{ matrix.build-params.value.docker.platforms }}
