@@ -15,11 +15,9 @@ identities:
 registries:
   stg:
     aws:
-      type: private
       region: ap-northeast-1
       repository-base: 615299752259.dkr.ecr.ap-northeast-1.amazonaws.com/mobb
   prd:
     aws:
-      type: private
       region: ap-northeast-1
       repository-base: 920373013500.dkr.ecr.ap-northeast-1.amazonaws.com/mobb
