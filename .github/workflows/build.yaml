@@ -1,0 +1,57 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      build-params: ${{ steps.build-params.outputs.build-params }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: build-params
+        uses: yuya-takeyama/mobb/actions/generate-build-params@initial
+        with:
+          root-dir: apps
+          global-config-file: apps/mobb-global.yaml
+          datetime-tag-timezone: Asia/Tokyo
+
+  build:
+    name: ${{ matrix.build-params.label }}
+    needs: setup
+    if: ${{ needs.setup.outputs.build-params != '[]' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      matrix:
+        build-params: ${{ fromJSON(needs.setup.outputs.build-params) }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "$BUILD_PARAMS"
+        env:
+          BUILD_PARAMS: ${{ toJSON(matrix.build-params) }}
+      - uses: actions/checkout@v4.1.7
+      - uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          role-to-assume: ${{ matrix.build-params.value.docker.aws.identity.iam-role }}
+          aws-region: ${{ matrix.build-params.value.docker.aws.identity.region }}
+      - id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2.0.1
+        with:
+          registry-type: ${{ matrix.build-params.value.docker.aws.registry.type }}
+      - uses: docker/setup-buildx-action@v3.6.1
+      - uses: docker/build-push-action@v6.6.1
+        with:
+          context: ${{ matrix.build-params.value.docker.context }}
+          push: true
+          tags: ${{ matrix.build-params.value.docker.tags }}
+          platforms: ${{ matrix.build-params.value.docker.platforms }}
