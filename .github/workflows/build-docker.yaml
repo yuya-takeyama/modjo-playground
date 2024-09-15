@@ -19,7 +19,7 @@ jobs:
         uses: yuya-takeyama/mobb/actions/generate-build-docker-params@initial
         with:
           root-dir: apps
-          global-config-file: apps/mobb-docker-global.yaml
+          global-config-file: apps/mobb-global.yaml
           datetime-tag-timezone: Asia/Tokyo
 
   build:
