@@ -1,31 +1,31 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  extends: ["config:recommended", "github>aquaproj/aqua-renovate-config#2.3.1"],
-  labels: [
-    "renovate:{{depName}}",
-    "renovate:{{depName}}/{{newVersion}}",
-    "datasource:{{datasource}}",
-  ],
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: ['config:recommended', 'github>aquaproj/aqua-renovate-config#2.3.1'],
+  labels: ['datasource:{{datasource}}'],
   patch: {
     automerge: true,
   },
   customManagers: [
     {
-      customType: "regex",
-      fileMatch: ["\\.tf$"],
+      customType: 'regex',
+      fileMatch: ['\\.tf$'],
       matchStrings: [
         'image_identifier\\s*=\\s*"(?<depName>(?:\\d+\\.dkr\\.ecr\\.[^\\.]+\\.amazonaws.com)/[^:]+?):(?<currentValue>.+?)"',
       ],
-      datasourceTemplate: "docker",
+      datasourceTemplate: 'docker',
     },
   ],
   packageRules: [
     {
+      // To avoid 422 error due to the length of the labels for ECR deps
       matchDepNames: [
-        "^(?:(?:\\d+\\.dkr\\.ecr\\.[^\\.]+\\.amazonaws.com)/[^:]+?)$",
+        '!^(?:(?:\\d+\\.dkr\\.ecr\\.[^\\.]+\\.amazonaws.com)/[^:]+?)$',
       ],
-      // To avoid 422 error due to the length of the labels
-      labels: ["datasource:{{datasource}}"],
+      labels: [
+        'renovate:{{depName}}',
+        'renovate:{{depName}}/{{newVersion}}',
+        'datasource:{{datasource}}',
+      ],
     },
   ],
 }
