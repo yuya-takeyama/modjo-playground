@@ -50,5 +50,5 @@ jobs:
         with:
           context: ${{ matrix.build-params.value.docker.context }}
           push: true
-          tags: ${{ toJSON(matrix.build-params.value.docker.tags) }}
-          platforms: ${{ toJSON(matrix.build-params.value.docker.platforms) }}
+          tags: ${{ matrix.build-params.value.docker.tags }}
+          platforms: ${{ matrix.build-params.value.docker.platforms }}
