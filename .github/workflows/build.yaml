@@ -42,12 +42,12 @@ jobs:
       - uses: actions/checkout@v4.1.7
       - uses: aws-actions/configure-aws-credentials@v4.0.2
         with:
-          role-to-assume: ${{ matrix.build-params.value.docker.identity.aws.iam-role }}
-          aws-region: ${{ matrix.build-params.value.docker.identity.aws.region }}
+          role-to-assume: ${{ matrix.build-params.value.docker.aws.identity.iam-role }}
+          aws-region: ${{ matrix.build-params.value.docker.aws.identity.region }}
       - id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2.0.1
         with:
-          registry-type: ${{ matrix.build-params.value.docker.registry.aws.type }}
+          registry-type: ${{ matrix.build-params.value.docker.aws.registry.type }}
       - uses: docker/setup-buildx-action@v3.6.1
       - uses: docker/build-push-action@v6.6.1
         with:
