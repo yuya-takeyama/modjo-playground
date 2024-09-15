@@ -1,0 +1,31 @@
+build:
+  - on:
+      push:
+        branches:
+          - main
+    docker:
+      tagging: always_latest
+      platforms:
+        - linux/amd64
+      identity: stg
+      registry: stg
+  - on:
+      push:
+        branches:
+          - main
+    docker:
+      tagging: pull_request
+      platforms:
+        - linux/amd64
+      identity: stg
+      registry: stg
+  - on:
+      push:
+        branches:
+          - main
+    docker:
+      tagging: semver_datetime
+      platforms:
+        - linux/amd64
+      identity: prd
+      registry: prd
