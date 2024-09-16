@@ -15,7 +15,7 @@ resource "aws_apprunner_service" "echo" {
       access_role_arn = "arn:aws:iam::615299752259:role/service-role/AppRunnerECRAccessRole"
     }
 
-    auto_deployments_enabled = false
+    auto_deployments_enabled = true
   }
 
   instance_configuration {
