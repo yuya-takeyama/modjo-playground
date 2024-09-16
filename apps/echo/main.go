@@ -7,6 +7,7 @@ import (
 )
 
 func echoHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "v2\n")
 	fmt.Fprintf(w, "Method: %s\n", r.Method)
 	fmt.Fprintf(w, "URL: %s\n", r.URL.String())
 	fmt.Fprintf(w, "Headers:\n")
