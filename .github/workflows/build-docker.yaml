@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - id: build-params
-        uses: yuya-takeyama/mobb/actions/generate-build-docker-params@7b5d44127906c9a83546ae3911ef1c32ffae3d4b # v0.1.0-1
+        uses: yuya-takeyama/mobb/actions/generate-build-docker-params@c5a69f963d9d04825e52d7655c8c1e0b9ecfef50 # v0.1.0
         with:
           root-dir: apps
           global-config-file: apps/mobb-global.yaml
