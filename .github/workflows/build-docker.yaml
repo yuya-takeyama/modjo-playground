@@ -20,7 +20,7 @@ jobs:
     outputs:
       build-params: ${{ steps.build-params.outputs.build-params }}
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
       - id: build-params
         uses: yuya-takeyama/modjo/actions/generate-build-docker-params@6ae700d9be7a8fee5bb456bf8eb4f04c1232c95a # v0.1.2
         with:
@@ -40,12 +40,12 @@ jobs:
       matrix:
         build-params: ${{ fromJSON(needs.setup.outputs.build-params) }}
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
       - run: |
           echo "$BUILD_PARAMS"
         env:
           BUILD_PARAMS: ${{ toJSON(matrix.build-params) }}
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
       - uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4.0.2
         with:
           role-to-assume: ${{ matrix.build-params.value.docker.aws.identity.iam-role }}
