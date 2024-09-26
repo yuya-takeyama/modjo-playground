@@ -22,10 +22,10 @@ jobs:
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - id: build-params
-        uses: yuya-takeyama/mobb/actions/generate-build-docker-params@38880b8e3d6e16910bd483b4ea3805a58b25ae64 # v0.1.1
+        uses: yuya-takeyama/modjo/actions/generate-build-docker-params@38880b8e3d6e16910bd483b4ea3805a58b25ae64 # v0.1.1
         with:
           root-dir: apps
-          global-config-file: apps/mobb-global.yaml
+          global-config-file: apps/modjo-global.yaml
           datetime-tag-timezone: Asia/Tokyo
 
   build:

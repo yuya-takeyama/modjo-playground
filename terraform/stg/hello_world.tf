@@ -7,7 +7,7 @@ resource "aws_apprunner_service" "hello_world" {
         port = "8080"
       }
 
-      image_identifier      = "615299752259.dkr.ecr.ap-northeast-1.amazonaws.com/mobb/hello-world:latest"
+      image_identifier      = "615299752259.dkr.ecr.ap-northeast-1.amazonaws.com/modjo/hello-world:latest"
       image_repository_type = "ECR"
     }
 
