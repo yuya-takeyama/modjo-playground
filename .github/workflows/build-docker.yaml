@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - id: build-params
-        uses: yuya-takeyama/modjo/actions/generate-build-docker-params@38880b8e3d6e16910bd483b4ea3805a58b25ae64 # v0.1.1
+        uses: yuya-takeyama/modjo/actions/generate-build-docker-params@6ae700d9be7a8fee5bb456bf8eb4f04c1232c95a # v0.1.2
         with:
           root-dir: apps
           global-config-file: apps/modjo-global.yaml
