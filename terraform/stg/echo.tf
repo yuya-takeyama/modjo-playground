@@ -7,7 +7,7 @@ resource "aws_apprunner_service" "echo" {
         port = "8080"
       }
 
-      image_identifier      = "615299752259.dkr.ecr.ap-northeast-1.amazonaws.com/mobb/echo:latest"
+      image_identifier      = "615299752259.dkr.ecr.ap-northeast-1.amazonaws.com/modjo/echo:latest"
       image_repository_type = "ECR"
     }
 
