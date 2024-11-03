@@ -24,7 +24,7 @@ jobs:
           aws-region: ap-northeast-1
           role-to-assume: arn:aws:iam::920373013500:role/renovate
       - name: Self-hosted Renovate
-        uses: renovatebot/github-action@e1db501385ddcccbaae6fb9c06befae04f379f23 # v40.2.10
+        uses: renovatebot/github-action@80eaf969abf68ad62aa94d9ab392421b31621634 # v40.3.4
         with:
           configurationFile: renovate-config.json
           renovate-version: full
