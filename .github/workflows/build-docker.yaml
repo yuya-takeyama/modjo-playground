@@ -27,6 +27,10 @@ jobs:
           root-dir: apps
           global-config-file: apps/modjo-global.yaml
           datetime-tag-timezone: Asia/Tokyo
+      - run: |
+          echo "$BUILD_PARAMS"
+        env:
+          BUILD_PARAMS: ${{ steps.build-params.outputs.build-params }}
 
   build:
     name: ${{ matrix.build-params.label }}
